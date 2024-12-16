@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #ff66b2, #ff3385); /* Gradient pink background */
+            margin-top: 60px; /* Adds space below the fixed navbar */
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #ff66b2, #ff3385); /* Gradient pink */
+            padding: 5px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            text-transform: uppercase;
+            margin: 0 15px;
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fffae6;
+            text-decoration: none;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        /* Cart Item Styling */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item .item-info {
+            flex: 1;
+            padding-left: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item .item-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .cart-item .item-price {
+            color: #ff3385;
+            font-size: 1rem;
+        }
+
+        .cart-item .item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-quantity input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            color: #ff3385;
+        }
+
+        .btn-proceed {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-proceed:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Bakery</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                {% for category in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index', category=category) }}">{{ category }}</a>
+                </li>
+                {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_cart') }}">Cart</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content goes here -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Bootstrap JS & dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
